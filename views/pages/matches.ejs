@@ -1,0 +1,11 @@
+<%- include("../partials/_header") -%>
+
+<% if (matches.length === 1) { %>
+        <h3><%= __("MATCHES.MATCH_DETAIL") %></h3>
+    <% } else { %>
+        <h3><%= __("MATCHES.ALL_MATCHES") %></h3>
+<% } %>
+
+<%- include("../partials/_matches") -%>
+
+<%- include("../partials/_footer") -%>

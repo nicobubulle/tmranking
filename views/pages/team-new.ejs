@@ -1,0 +1,195 @@
+<%- include("../partials/_header") -%>
+
+  <h3>
+    <% if (formType==="New" ) { %>
+      <%= __("TEAMS.NEW.ADD_TEAM") %>
+        <% } else if (formType==="Edit" ) { %>
+          <%= __("TEAMS.EDIT.EDIT_TEAM") %>
+            <% } %>
+  </h3>
+
+  <form
+    action="<% (formType === 'New') ? '/new-team' : (teamId && adminPw) ? '/team/' + teamId + '/admin/edit/' + adminPw : '#' %>"
+    method="post">
+    <div class="form-horizontal">
+
+      <div class="row mb-3">
+        <label class="col-form-label col-sm-4" for="Name">
+          <%= __("TEAMS.NEW.NAME") %>
+        </label>
+        <div class="col-sm-8">
+          <div class=" input-group">
+            <span class="input-group-text"><i class="bi bi-people-fill"></i></span>
+            <input autofocus class="form-control" id="team-name" name="name" value="<%= team.name %>" <%= (formType === 'Edit') ? 'disabled' : '' %>/>
+          </div>
+        </div>
+      </div>
+
+      <div class="row mb-3">
+        <label class="col-form-label col-sm-4" for="country">
+          <%= __("TEAMS.NEW.COUNTRY") %>
+        </label>
+        <div class="col-sm-8">
+          <div class=" input-group">
+            <span class="input-group-text"><i class="bi bi-flag-fill"></i></span>
+            <input type="text" id="country-input" name="country" class="form-control" list="countries"
+              value="<%= team.country %>">
+            <datalist id="countries">
+            </datalist>
+          </div>
+        </div>
+      </div>
+
+      <div class="row mb-3">
+        <label class="col-form-label col-sm-4" for="city">
+          <%= __("TEAMS.NEW.CITY") %>
+        </label>
+        <div class="col-sm-8">
+          <div class=" input-group">
+            <span class="input-group-text"><i class="bi bi-buildings-fill"></i></span>
+            <input class="form-control" id="city-input" name="city" value="<%= team.city %>" />
+          </div>
+        </div>
+      </div>
+
+      <div class="row mb-3">
+        <label class="col-form-label col-sm-4" for="adminName">
+          <%= __("TEAMS.NEW.ADMIN_NAME") %>
+        </label>
+        <div class="col-sm-8">
+          <div class=" input-group">
+            <span class="input-group-text"><i class="bi bi-person-fill-gear"></i></span>
+            <input class="form-control" id="admin-name" name="adminName" value="<%= team.adminname %>" />
+          </div>
+        </div>
+      </div>
+
+      <div class="row mb-3">
+        <label class="col-form-label col-sm-4" for="adminEmail">
+          <%= __("TEAMS.NEW.ADMIN_EMAIL") %>
+        </label>
+        <div class="col-sm-8">
+          <div class=" input-group">
+            <span class="input-group-text">@</span>
+            <input class="form-control" id="admin-email" name="adminEmail" value="<%= team.adminemail %>" />
+          </div>
+        </div>
+      </div>
+
+      <div class="row mb-3<% if (formType === 'Edit') { %> d-none<% } %>">
+        <label class="col-form-label col-sm-4 " for="adminPw">
+          <%= __("TEAMS.NEW.ADMIN_KEY") %>
+        </label>
+        <div class="col-sm-8">
+          <div class=" input-group">
+            <span class="input-group-text"><i class="bi bi-key-fill"></i></span>
+            <input class="form-control" id="admin-pw" name="adminPw" value="<%= team.adminPw %>" readonly />
+            <a href="#" class="input-group-text clipboard-btn" data-clipboard-target="#admin-pw"
+              style="cursor: pointer; text-decoration: underline;"><i class="bi bi-clipboard-fill"></i></a>
+          </div>
+          <small class="copy-text text-success d-none ms-2">
+            <%= __("TEAMS.NEW.COPIED") %>
+          </small>
+        </div>
+      </div>
+
+      <div class="row mb-3">
+        <label class="col-form-label col-sm-4">
+          <%= __("TEAMS.NEW.PRIVACY") %>
+        </label>
+        <div class="col-sm-8 btn-group">
+          <input class="btn-check" type="radio" name="public" value="1" id="public" <%=(team.public===1) ? 'checked'
+            : '' %>>
+          <label class="btn btn-secondary" for="public">
+            <%= __("TEAMS.NEW.PUBLIC") %>
+          </label>
+          <input class="btn-check" type="radio" name="public" value="0" id="private" <%=(team.public===0) ? 'checked'
+            : '' %>>
+          <label class="btn btn-secondary" for="private">
+            <%= __("TEAMS.NEW.PRIVATE") %>
+          </label>
+        </div>
+      </div>
+
+      <div class="row mb-3 <% if (team.public===1) { %> d-none<% } %>" id="private-key-row">
+        <label class="col-form-label col-sm-4" for="private-key">
+          <%= __("TEAMS.NEW.PRIVATE_KEY") %>
+        </label>
+        <div class="col-sm-8">
+          <div class="input-group">
+            <span class="input-group-text"><i class="bi bi-key-fill"></i></span>
+            <input class="form-control" id="private-key" name="privateKey" value="<%= team.privateKey %>" readonly />
+            <a href="#" class="input-group-text clipboard-btn" data-clipboard-target="#private-key"
+              style="cursor: pointer; text-decoration: underline;"><i class="bi bi-clipboard-fill"></i></a>
+          </div>
+          <small class="copy-text text-success d-none ms-2">
+            <%= __("TEAMS.NEW.COPIED") %>
+          </small>
+        </div>
+      </div>
+
+      <div class="row mb-3">
+        <label class="col-form-label col-sm-4">
+          <%= __("TEAMS.NEW.TM") %>
+        </label>
+        <div class="col-sm-8 btn-group">
+          <input type="radio" class="btn-check" name="game1Opt" value="2" id="default" autocomplete="off"
+            <%=(team.game1Opt===2) ? 'checked' : '' %>>
+          <label class="btn btn-secondary" for="default">
+            <%= __("TEAMS.NEW.DEFAULT") %>
+          </label>
+          <input type="radio" class="btn-check" name="game1Opt" value="1" id="enable" autocomplete="off"
+            <%=(team.game1Opt===1) ? 'checked' : '' %>>
+          <label class="btn btn-secondary" for="enable">
+            <%= __("TEAMS.NEW.ENABLE") %>
+          </label>
+          <input type="radio" class="btn-check" name="game1Opt" value="0" id="disable" autocomplete="off"
+            <%=(team.game1Opt===0) ? 'checked' : '' %>>
+          <label class="btn btn-secondary" for="disable">
+            <%= __("TEAMS.NEW.DISABLE") %>
+          </label>
+        </div>
+      </div>
+
+      <div class="row mb-3">
+        <label class="col-form-label col-sm-4">
+          <%= __("TEAMS.NEW.TMAE") %>
+        </label>
+        <div class="col-sm-8 btn-group">
+          <input type="radio" class="btn-check" name="game2Opt" value="2" id="default1" autocomplete="off"
+            <%=(team.game2Opt===2) ? 'checked' : '' %>>
+          <label class="btn btn-secondary" for="default1">
+            <%= __("TEAMS.NEW.DEFAULT") %>
+          </label>
+          <input type="radio" class="btn-check" name="game2Opt" value="1" id="enable1" autocomplete="off"
+            <%=(team.game2Opt===1) ? 'checked' : '' %>>
+          <label class="btn btn-secondary" for="enable1">
+            <%= __("TEAMS.NEW.ENABLE") %>
+          </label>
+          <input type="radio" class="btn-check" name="game2Opt" value="0" id="disable1" autocomplete="off"
+            <%=(team.game2Opt===0) ? 'checked' : '' %>>
+          <label class="btn btn-secondary" for="disable1">
+            <%= __("TEAMS.NEW.DISABLE") %>
+          </label>
+        </div>
+      </div>
+
+      <div class="row mb-3">
+        <label class="col-form-label col-sm-4"></label>
+        <div class="col-sm-8 d-grid">
+          <input type="submit" value=<% if (formType==="New" ) { %>
+          <%= __("TEAMS.NEW.ADD") %>
+            <% } else if (formType==="Edit" ) { %>
+              <%= __("TEAMS.EDIT.EDIT") %>
+                <% } %> class="btn btn-default btn-success" <% (formType === 'New') ? 'disabled' : '' %>/>
+        </div>
+      </div>
+    </div>
+  </form>
+  <script>
+    var formType = '<%- formType %>'
+  </script>
+  <script src="/jquery/dist/jquery.min.js"></script>
+  <script src="/clipboard/dist/clipboard.min.js"></script>
+  <script src="/js/team-new.js"></script>
+  <%- include("../partials/_footer") -%>

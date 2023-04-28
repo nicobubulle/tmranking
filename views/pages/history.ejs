@@ -1,0 +1,12 @@
+<%- include("../partials/_header") -%>
+
+  <h3><%= __("HISTORY.TITLE") %></h3>
+
+  <canvas id="chart"></canvas>
+
+  <script>
+    const matches = JSON.parse('<%-JSON.stringify(matches) %>');
+  </script>
+  <script src="/chart.js/dist/chart.umd.js"></script>
+  <script src="/js/chart.js"></script>
+<%- include("../partials/_footer") -%>

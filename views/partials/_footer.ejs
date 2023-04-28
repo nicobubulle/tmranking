@@ -1,0 +1,16 @@
+            <footer>
+                <div>
+                    <p>&copy; 2023 - <%= __("GEN.TMRANKING") %></p>
+                </div>
+            </footer>
+        </div>
+        <script src="/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+        <script>
+            // Initialiser les tooltips
+            var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+            var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+                return new bootstrap.Tooltip(tooltipTriggerEl)
+            })
+        </script>
+    </body>
+</html>

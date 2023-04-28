@@ -1,0 +1,57 @@
+<div>
+    <% for (const match of matches) { %>
+        <div class="card mb-3">
+            <div class="card-body">
+                <div class="row mb-3 d-flex align-items-center">
+                    <div class="col text-start">
+                        <span class="score-player me-2">
+                            <%= match.matchDate %>
+                        </span>
+                        <span>
+                            (<%= match.matchLocation %>)
+                        </span>
+                    </div>
+                    <div class="col text-end">
+                        <img src="/images/<%= match.matchOpt.id %>.png" alt="<%= match.matchOpt.game %>"
+                            data-bs-toggle="tooltip" data-bs-placement="top" class="me-2"
+                            aria-label="<%= match.matchOpt.game %>" data-bs-original-title="<%= match.matchOpt.game %>">
+                        <% if (match.matchOpt.options.plateau==="tm-sel" ) { %>
+                            <span>(<%= match.matchOpt.options.plateau %>)</span>
+                        <% } %>
+                        <% match.matchOpt.options.extensions.forEach(ext=> { %>
+                            <img src="/images/<%= ext.id %>.png" alt="<%= ext.name %>" data-bs-toggle="tooltip"
+                                data-bs-placement="top" aria-label="<%= ext.name %>"
+                                data-bs-original-title="<%= ext.name %>">
+                        <% }) %>
+                    </div>
+                </div>
+                <% for (const player of match.players) { %>
+                        <div class="row mb-1 d-flex align-items-center">
+                            <div class="col text-start d-flex align-items-center">
+                                    <img src="/uploads/<%= player.image %>" class="rounded-circle me-2" width="32" height="32">
+                                    <span>
+                                        <%= player.name %> (<%= player.corporation %>)
+                                    </span>
+                            </div>
+                            <div class="col justify-content-end d-flex align-items-center">
+                                <div class="d-flex justify-content-center align-items-center rounded-circle me-2 pv-div"><span><%= player.victoryPoints %></span></div>
+                                <div class="d-flex justify-content-end" style="width: 50px;">
+                                    <% if (player.variation> 0) { %>
+                                        <i class="bi bi-caret-up-fill elo-up"></i>
+                                        <span class="elo-up">
+                                            <%= "+" + player.variation %>
+                                        </span>
+                                        <% } else { %>
+                                            <i class="bi bi-caret-down-fill elo-down"></i>
+                                            <span class="elo-down">
+                                                <%= player.variation %>
+                                            </span>
+                                            <% } %>
+                                </div>
+                            </div>
+                        </div>
+                        <% } %>
+            </div>
+        </div>
+        <% } %>
+</div>

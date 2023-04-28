@@ -1,0 +1,153 @@
+<%- include("../partials/_header") -%>
+
+  <h3>
+    <% if (formType==="New" ) { %>
+      <%= __("NEW_PLAYER.TITLE") %>
+        <% } else if (formType==="Edit" ) { %>
+          <%= __("TEAMS.EDIT.EDIT_PLAYER") %>
+            <% } %>
+  </h3>
+
+  <form
+    action="<%= (formType === 'New') ? '/team/' + teamId + '/admin/new-player/' + adminPw : (formType === 'Edit' && (adminPw || userPw)) ? '/team/' + teamId + ((adminPw) ? '/admin' : '/user') + '/edit/player/' + playerInfo.id + '/' + ((adminPw) ? adminPw : userPw) : '#' %>"
+    method="post" enctype="multipart/form-data">
+    <div class="form-horizontal">
+
+      <div class="row mb-3">
+        <div class="col-sm-2"></div>
+        <div class="col-sm-7  mx-auto">
+          <img id="preview" src="/uploads/<%= (playerInfo.image) ? playerInfo.image : 'player.png' %>"
+            alt="Image preview" width="128" height="128" class="rounded-circle">
+        </div>
+      </div>
+
+      <div class="row mb-3">
+        <label class="col-form-label col-sm-2" for="image">
+          <%= __("NEW_PLAYER.IMAGE") %>
+        </label>
+        <div class="col-sm-7">
+          <input class="form-control" type="file" name="image" id="image" accept="image/*"
+            onchange="onImageSelected(event)">
+        </div>
+      </div>
+
+      <div class="row mb-3">
+        <label class="col-form-label col-sm-2" for="Name">
+          <%= __("NEW_PLAYER.NAME") %>
+        </label>
+        <div class="col-sm-7">
+          <input autofocus class="form-control<% if (formType === 'Edit') { %> is-valid<% } else { %> is-invalid<% } %>"
+            name="Name" value="<%= playerInfo.username %>" onkeyup="onKeyUp()" />
+        </div>
+      </div>
+
+      <div class="row mb-3<% if (formType === 'Edit') { %> d-none<% } %>">
+        <label class="col-form-label col-sm-2" for="UserPw">
+          <%= __("NEW_PLAYER.USER_KEY") %>
+        </label>
+        <div class="col-sm-7">
+          <div class="input-group">
+            <span class="input-group-text"><i class="bi bi-key-fill"></i></span>
+            <input class="form-control" id="private-key" name="UserPw" value="<%= playerInfo.userPw %>" readonly />
+            <a href="#" class="input-group-text clipboard-btn" data-clipboard-target="#private-key"
+              style="cursor: pointer; text-decoration: underline;"><i class="bi bi-clipboard-fill"></i></a>
+          </div>
+          <small class="copy-text text-success d-none ms-2">
+            <%= __("NEW_PLAYER.COPIED") %>
+          </small>
+        </div>
+      </div>
+
+      <div class="row mb-3">
+        <label class="col-form-label col-sm-2" for="color">
+          <%= __("NEW_PLAYER.COLOR") %>
+        </label>
+        <div class="col-sm-7">
+          <input type="color" class="form-control form-control-color" id="color" name="color"
+            value="<%= playerInfo.color %>" title="Choose your color">
+        </div>
+      </div>
+
+      <div class="row mb-3">
+        <label class="col-form-label col-sm-2"></label>
+        <div class="col-sm-7 d-grid">
+          <input type="submit" value=<% if (formType==="New" ) { %>
+          <%= __("NEW_PLAYER.ADD") %>
+            <% } else if (formType==="Edit" ) { %>
+              <%= __("TEAMS.EDIT.EDIT") %>
+                <% } %> class="btn btn-default btn-success" <% (formType==='New' ) ? 'disabled' : '' %>/>
+        </div>
+      </div>
+    </div>
+  </form>
+  <script src="/jquery/dist/jquery.min.js"></script>
+  <script src="/clipboard/dist/clipboard.min.js"></script>
+
+  <script>
+    $(document).ready(function () {
+      // initialiser le plugin clipboard.js
+      var clipboard = new ClipboardJS('.clipboard-btn');
+
+      // gérer l'événement "copié" et afficher le message de confirmation
+      clipboard.on('success', function (e) {
+        var copyText = e.trigger.parentElement.nextElementSibling;
+        copyText.classList.remove('d-none');
+        setTimeout(function () {
+          copyText.classList.add('d-none');
+        }, 5000);
+      });
+    });
+
+    function onKeyUp() {
+      const nameInput = document.getElementsByName('Name')[0];
+      const addButton = document.querySelector('input[type="submit"]');
+
+      if (nameInput.value.trim() === '') {
+        addButton.disabled = true;
+        nameInput.classList.add('is-invalid');
+      } else {
+        addButton.disabled = false;
+        nameInput.classList.remove('is-invalid');
+      }
+    }
+
+    function onImageSelected(event) {
+      const input = event.target;
+      const maxSizeKB = 150;
+      const maxWidth = 128;
+      const maxHeight = 128;
+
+      if (input.files && input.files[0]) {
+        const file = input.files[0];
+        const fileSizeKB = file.size / 1024;
+
+        if (fileSizeKB > maxSizeKB) {
+          alert(`La taille du fichier ne doit pas dépasser ${maxSizeKB} Ko.`);
+          input.value = ""; // Effacer la sélection du fichier
+          return;
+        }
+
+        const reader = new FileReader();
+        reader.onload = (e) => {
+          const image = new Image();
+          image.src = e.target.result;
+          image.onload = function () {
+            if (this.width > maxWidth || this.height > maxHeight) {
+              alert(`Les dimensions de l'image ne doivent pas dépasser ${maxWidth}x${maxHeight} pixels.`);
+              input.value = ""; // Effacer la sélection du fichier
+            } else {
+              // Mettre à jour l'aperçu de l'image
+              document.getElementById('preview').src = e.target.result;
+            }
+          };
+        };
+
+        reader.readAsDataURL(file);
+      } else {
+        // Afficher l'image par défaut si aucune image n'est sélectionnée
+        document.getElementById('preview').src = "/uploads/player.png";
+      }
+    }
+  </script>
+
+  <%- include("../partials/_footer") -%>

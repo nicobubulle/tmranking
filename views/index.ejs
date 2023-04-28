@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+    <title>
+        <%= __("GEN.TMRANKING") %>
+    </title>
+    <link rel="stylesheet" href="/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="/bootstrap-icons/font/bootstrap-icons.css" />
+
+    <style>
+        /* Styles pour la section du header */
+        .header {
+            background-image: url('/images/bghome.jpeg');
+            /* Chemin vers l'image de fond */
+            background-size: cover;
+            background-position: center center;
+            height: 100vh;
+            /* Hauteur égale à la hauteur de l'écran */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: #fff;
+        }
+
+        .header h1 {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+        }
+
+        .header h2 {
+            font-size: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .header .btn {
+            font-size: 1.5rem;
+            margin: 1rem;
+        }
+
+        .container {
+            margin-top: 100px;
+        }
+
+        .counter-box {
+            display: block;
+            background: #f6f6f6;
+            padding: 40px 20px 37px;
+            text-align: center
+        }
+
+        .counter-box p {
+            margin: 5px 0 0;
+            padding: 0;
+            color: #909090;
+            font-size: 18px;
+            font-weight: 500
+        }
+
+        .counter-box i {
+            font-size: 60px;
+            margin: 0 0 15px;
+            color: #d2d2d2
+        }
+
+        .counter {
+            display: block;
+            font-size: 32px;
+            font-weight: 700;
+            color: #666;
+            line-height: 28px
+        }
+
+        .counter-box.colored {
+            background: #3acf87;
+        }
+
+        .counter-box.colored p,
+        .counter-box.colored i,
+        .counter-box.colored .counter {
+            color: #fff
+        }
+
+        @media screen and (min-width: 768px) {
+            .carousel-inner {
+                max-width: 768px;
+                margin: 0 auto;
+            }
+        }
+
+        .carousel-item.overlay::before {
+  content: '';
+  position: absolute;
+  top: 70%;
+  left: 0;
+  width: 100%;
+  height: 30%;
+  background-color: rgba(255, 255, 255, 0.6); /* Couleur de fond semi-transparente */
+}
+
+.carousel-caption {
+  color: #fff;
+}
+    </style>
+</head>
+
+<body>
+    <header class="header">
+        <div class="container-xxl">
+            <h1>
+                <%= __("GEN.TMRANKING") %>
+            </h1>
+            <h2>
+                <%= __("INDEX.HEADER.SUB") %>
+            </h2>
+            <a href="/teams" class="btn btn-primary btn-lg">
+                <%= __("INDEX.HEADER.ALL_TEAMS") %>
+            </a>
+            <a href="/new-team" class="btn btn-success btn-lg">
+                <%= __("INDEX.HEADER.CREATE_TEAM") %>
+            </a>
+            <a href="#SEE_MORE" class="btn btn-secondary btn-lg">
+                <%= __("INDEX.HEADER.SEE_MORE") %>
+            </a>
+        </div>
+    </header>
+    <div class="container-xxl mt-4">
+        <h3 id="SEE_MORE">
+            <%= __("INDEX.WHY") %>
+        </h3>
+        <p>
+            <%= __("INDEX.WHY_DESC") %>
+        </p>
+    </div>
+    <div class="container-xxl mt-4">
+        <div class="row">
+            <div class="three col-md-4">
+                <div class="counter-box colored">
+                    <i class="bi bi-people-fill"></i>
+                    <span class="counter">
+                        <%= stats.totalTeams %>
+                    </span>
+                    <p>
+                        <%= __("INDEX.TEAMS") %>
+                    </p>
+                </div>
+            </div>
+            <div class="three col-md-4">
+                <div class="counter-box">
+                    <i class="bi bi-person-fill"></i>
+                    <span class="counter">
+                        <%= stats.totalPlayers %>
+                    </span>
+                    <p>
+                        <%= __("INDEX.PLAYERS") %>
+                    </p>
+                </div>
+            </div>
+            <div class="three col-md-4">
+                <div class="counter-box">
+                    <i class="bi bi-calendar"></i>
+                    <span class="counter">
+                        <%= stats.totalMatches %>
+                    </span>
+                    <p>
+                        <%= __("INDEX.MATCHES") %>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container-xxl mt-4">
+        <h3>
+            <%= __("INDEX.HOWTO") %>
+        </h3>
+        <div id="carouselExampleCaptions" class="carousel carousel-dark slide" data-bs-ride="carousel">
+            <div class="carousel-indicators">
+                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active"
+                    aria-current="true" aria-label="Slide 1"></button>
+                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1"
+                    aria-label="Slide 2"></button>
+                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2"
+                    aria-label="Slide 3"></button>
+                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="3"
+                    aria-label="Slide 4"></button>
+                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="4"
+                    aria-label="Slide 5"></button>
+                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="5"
+                    aria-label="Slide 6"></button>
+                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="6"
+                    aria-label="Slide 7"></button>
+                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="7"
+                    aria-label="Slide 8"></button>
+                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="8"
+                    aria-label="Slide 9"></button>
+                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="9"
+                    aria-label="Slide 10"></button>
+            </div>
+            <div class="carousel-inner">
+                <div class="carousel-item overlay active">
+                    <img src="/images/1.png" class="d-block w-100" alt="1">
+                    <div class="carousel-caption d-none d-md-block">
+                        <h5>
+                            <%= __("INDEX.SLIDE.1_TITLE") %>
+                        </h5>
+                        <p>
+                            <%= __("INDEX.SLIDE.1_SUB") %>
+                        </p>
+                    </div>
+                </div>
+                <div class="carousel-item overlay">
+                    <img src="/images/2.png" class="d-block w-100" alt="2">
+                    <div class="carousel-caption d-none d-md-block">
+                        <h5>
+                            <%= __("INDEX.SLIDE.2_TITLE") %>
+                        </h5>
+                        <p>
+                            <%= __("INDEX.SLIDE.2_SUB") %>
+                        </p>
+                    </div>
+                </div>
+                <div class="carousel-item overlay">
+                    <img src="/images/3.png" class="d-block w-100" alt="3">
+                    <div class="carousel-caption d-none d-md-block">
+                        <h5>
+                            <%= __("INDEX.SLIDE.3_TITLE") %>
+                        </h5>
+                        <p>
+                            <%= __("INDEX.SLIDE.3_SUB") %>
+                        </p>
+                    </div>
+                </div>
+                <div class="carousel-item overlay">
+                    <img src="/images/4.png" class="d-block w-100" alt="4">
+                    <div class="carousel-caption d-none d-md-block">
+                        <h5>
+                            <%= __("INDEX.SLIDE.4_TITLE") %>
+                        </h5>
+                        <p>
+                            <%= __("INDEX.SLIDE.4_SUB") %>
+                        </p>
+                    </div>
+                </div>
+                <div class="carousel-item overlay">
+                    <img src="/images/5.png" class="d-block w-100" alt="5">
+                    <div class="carousel-caption d-none d-md-block">
+                        <h5>
+                            <%= __("INDEX.SLIDE.5_TITLE") %>
+                        </h5>
+                        <p>
+                            <%= __("INDEX.SLIDE.5_SUB") %>
+                        </p>
+                    </div>
+                </div>
+                <div class="carousel-item overlay">
+                    <img src="/images/6.png" class="d-block w-100" alt="6">
+                    <div class="carousel-caption d-none d-md-block">
+                        <h5>
+                            <%= __("INDEX.SLIDE.6_TITLE") %>
+                        </h5>
+                        <p>
+                            <%= __("INDEX.SLIDE.6_SUB") %>
+                        </p>
+                    </div>
+                </div>
+                <div class="carousel-item overlay">
+                    <img src="/images/7.png" class="d-block w-100" alt="7">
+                    <div class="carousel-caption d-none d-md-block">
+                        <h5>
+                            <%= __("INDEX.SLIDE.7_TITLE") %>
+                        </h5>
+                        <p>
+                            <%= __("INDEX.SLIDE.7_SUB") %>
+                        </p>
+                    </div>
+                </div>
+                <div class="carousel-item overlay">
+                    <img src="/images/8.png" class="d-block w-100" alt="8">
+                    <div class="carousel-caption d-none d-md-block">
+                        <h5>
+                            <%= __("INDEX.SLIDE.8_TITLE") %>
+                        </h5>
+                        <p>
+                            <%= __("INDEX.SLIDE.8_SUB") %>
+                        </p>
+                    </div>
+                </div>
+                <div class="carousel-item overlay">
+                    <img src="/images/9.png" class="d-block w-100" alt="9">
+                    <div class="carousel-caption d-none d-md-block">
+                        <h5>
+                            <%= __("INDEX.SLIDE.9_TITLE") %>
+                        </h5>
+                        <p>
+                            <%= __("INDEX.SLIDE.9_SUB") %>
+                        </p>
+                    </div>
+                </div>
+                <div class="carousel-item overlay">
+                    <img src="/images/10.png" class="d-block w-100" alt="10">
+                    <div class="carousel-caption d-none d-md-block">
+                        <h5>
+                            <%= __("INDEX.SLIDE.10_TITLE") %>
+                        </h5>
+                        <p>
+                            <%= __("INDEX.SLIDE.10_SUB") %>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions"
+                data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">
+                    <%= __("INDEX.SLIDE.PREVIOUS") %>
+                </span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions"
+                data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">
+                    <%= __("INDEX.SLIDE.NEXT") %>
+                </span>
+            </button>
+        </div>
+    </div>
+    <script src="/jquery/dist/jquery.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('.counter').each(function () {
+                $(this).prop('Counter', 0).animate({
+                    Counter: $(this).text()
+                }, {
+                    duration: 4000,
+                    easing: 'swing',
+                    step: function (now) {
+                        $(this).text(Math.ceil(now));
+                    }
+                });
+            });
+
+        }); 
+    </script>
+    <%- include("./partials/_footer") -%>

@@ -1,0 +1,77 @@
+<%- include("../partials/_header") -%>
+<h3><%= __("TEAMS.PLAYERS_TABLE.TITLE") %></h3>
+    <div class="table-responsive-sm">
+        <table class="table table-hover playertable">
+            <thead>
+                <tr>
+                    <th class="col-5"><%= __("TEAMS.PLAYERS_TABLE.NAME") %></th>
+                    <th class="col-1 text-center"><%= __("TEAMS.PLAYERS_TABLE.CREATED_AT") %></th>
+                    <th class="col-1 text-center"><%= __("TEAMS.PLAYERS_TABLE.SCORE") %></th>
+                    <th class="col-1 text-center"><%= __("TEAMS.PLAYERS_TABLE.COLOR") %></th>
+                    <th class="col-1 text-center"><%= __("TEAMS.PLAYERS_TABLE.MATCHES") %></th>
+                    <th class="col-1 text-center"><%= __("TEAMS.PLAYERS_TABLE.LAST") %></th>
+                </tr>
+            </thead>
+            <tbody>
+                <% for (const player of players) { %>
+                    <tr data-bs-toggle="collapse" data-bs-target="#user<%= player.id %>" class="align-middle">
+                        <td>
+                            <img src="/uploads/<%= player.image %>" class="rounded-circle" width="32" height="32"
+                                style="margin-right: 10px;">
+                            <span>
+                                <%= player.username %>
+                            </span>
+                        </td>
+                        <td class="text-center">
+                            <%= player.createdAt %>
+                        </td>
+                        <td class="text-center">
+                            <%= player.rank %>
+                        </td>
+                        <td>
+                            <div class="player-color mx-auto" <%- 'style="background-color: ' + player.color + ';"' %>>
+                            </div>
+                        </td>
+                        <td class="text-center">
+                            <%= player.matchCount %>
+                        </td>
+                        <td class="text-center">
+                            <%= player.lastMatchDate %>
+                        </td>
+                    </tr>
+                    <tr class="collapse align-middle" id="user<%= player.id %>">
+                        <td colspan="1"></td>
+                        <td colspan="3">
+                            <b><%= __("TEAMS.PLAYERS_TABLE.USERPW") %> : </b><%= player.userPw %>
+                        </td>
+                        <td colspan="2"><button type="button" class="btn btn-dark"onclick="window.location.href='/team/<%= teamId %>/admin/edit/player/<%= player.id %>/<%= adminPw %>'"><i class="bi bi-pencil text-white"></i></button></td>
+                    </tr>
+                    <% } %>
+            </tbody>
+        </table>
+    </div>
+    <script>
+        const tableRows = document.querySelectorAll('tbody tr[data-bs-toggle="collapse"]');
+
+        tableRows.forEach(row => {
+            row.addEventListener('click', () => {
+                const targetCollapse = document.querySelector(row.dataset.bsTarget);
+                const bootstrapCollapse = new bootstrap.Collapse(targetCollapse);
+                bootstrapCollapse.toggle();
+
+                tableRows.forEach(otherRow => {
+                    if (otherRow !== row) {
+                        const otherTargetCollapse = document.querySelector(otherRow.dataset.bsTarget);
+                        const otherBootstrapCollapse = bootstrap.Collapse.getInstance(otherTargetCollapse);
+                        if (otherBootstrapCollapse && otherBootstrapCollapse._isTransitioning) {
+                            return;
+                        }
+                        if (otherBootstrapCollapse && otherBootstrapCollapse._element.classList.contains('show')) {
+                            otherBootstrapCollapse.hide();
+                        }
+                    }
+                });
+            });
+        });
+    </script>
+    <%- include("../partials/_footer") -%>

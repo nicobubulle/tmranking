@@ -1,0 +1,32 @@
+<%- include("../partials/_header") -%>
+
+<% if (showUpdateAlert) { %>
+    <div id="update-alert" class="alert alert-success alert-dismissible fade show mt-3" role="alert">
+      <%= __("TEAMS.EDIT.UPDATED_TEAM") %>
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>    
+    <script src="/jquery/dist/jquery.min.js"></script>
+    <script>
+      setTimeout(() => {
+        $("#update-alert").alert('close');
+      }, 5000);
+    </script>
+<% } %>
+
+<h3><%= __("TEAM.LAST_MATCHES") %></h3>
+
+<%- include("../partials/_matches") -%>
+
+<div class="d-flex justify-content-center mb-3">
+    <button type="button" class="btn btn-light" onclick="window.location.href='/team/<%= teamId %><% if (adminPw) { %>/admin/matches/<%= adminPw %><% } else if (privateKey) { %>/private/matches/<%= privateKey %><% } else { %>/matches<% } %>'"><%= __("GEN.SEE_MORE") %></button>
+</div>
+
+<h3><%= __("TEAM.TOP_3") %></h3>
+
+<%- include("../partials/_ranking") -%>
+
+<div class="d-flex justify-content-center mb-3">
+    <button type="button" class="btn btn-light" onclick="window.location.href='/team/<%= teamId %><% if (adminPw) { %>/admin/ranking/<%= adminPw %><% } else if (privateKey) { %>/private/ranking/<%= privateKey %><% } else { %>/ranking<% } %>'"><%= __("GEN.SEE_MORE") %></button>
+</div>
+
+<%- include("../partials/_footer") -%>

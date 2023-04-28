@@ -1,0 +1,166 @@
+{
+    "BEGINNER_CORPORATION": {
+        "name": "CORPO_TM.BEGINNER_CORPORATION",
+        "extension": "EXT.BASE"
+    },
+    "CREDICOR": {
+        "name": "CORPO_TM.CREDICOR",
+        "extension": "EXT.BASE"
+    },
+    "ECOLINE": {
+        "name": "CORPO_TM.ECOLINE",
+        "extension": "EXT.BASE"
+    },
+    "HELION": {
+        "name": "CORPO_TM.HELION",
+        "extension": "EXT.BASE"
+    },
+    "INTERPLANETARY_CINEMATICS": {
+        "name": "CORPO_TM.INTERPLANETARY_CINEMATICS",
+        "extension": "EXT.BASE"
+    },
+    "INVENTRIX": {
+        "name": "CORPO_TM.INVENTRIX",
+        "extension": "EXT.BASE"
+    },
+    "MINING_GUILD": {
+        "name": "CORPO_TM.MINING_GUILD",
+        "extension": "EXT.BASE"
+    },
+    "PHOBOLOG": {
+        "name": "CORPO_TM.PHOBOLOG",
+        "extension": "EXT.BASE"
+    },
+    "SATURN_SYSTEMS": {
+        "name": "CORPO_TM.SATURN_SYSTEMS",
+        "extension": "EXT.CORPORATE_ERA"
+    },
+    "TERACTOR": {
+        "name": "CORPO_TM.TERACTOR",
+        "extension": "EXT.CORPORATE_ERA"
+    },
+    "THARSIS_REPUBLIC": {
+        "name": "CORPO_TM.THARSIS_REPUBLIC",
+        "extension": "EXT.BASE"
+    },
+    "THORGATE": {
+        "name": "CORPO_TM.THORGATE",
+        "extension": "EXT.BASE"
+    },
+    "UNITED_NATIONS_MARS_INITIATIVE": {
+        "name": "CORPO_TM.UNITED_NATIONS_MARS_INITIATIVE",
+        "extension": "EXT.BASE"
+    },
+    "CHEUNG_SHING_MARS": {
+        "name": "CORPO_TM.CHEUNG_SHING_MARS",
+        "extension": "EXT.PRELUDE"
+    },
+    "POINT_LUNA": {
+        "name": "CORPO_TM.POINT_LUNA",
+        "extension": "EXT.PRELUDE"
+    },
+    "ROBINSON_INDUSTRIES": {
+        "name": "CORPO_TM.ROBINSON_INDUSTRIES",
+        "extension": "EXT.PRELUDE"
+    },
+    "VALLEY_TRUST": {
+        "name": "CORPO_TM.VALLEY_TRUST",
+        "extension": "EXT.PRELUDE"
+    },
+    "VITOR": {
+        "name": "CORPO_TM.VITOR",
+        "extension": "EXT.PRELUDE"
+    },
+    "APHRODITE": {
+        "name": "CORPO_TM.APHRODITE",
+        "extension": "EXT.VENUS"
+    },
+    "CELESTIC": {
+        "name": "CORPO_TM.CELESTIC",
+        "extension": "EXT.VENUS"
+    },
+    "MANUTECH": {
+        "name": "CORPO_TM.MANUTECH",
+        "extension": "EXT.VENUS"
+    },
+    "MORNING_STAR_INC": {
+        "name": "CORPO_TM.MORNING_STAR_INC",
+        "extension": "EXT.VENUS"
+    },
+    "VIRON": {
+        "name": "CORPO_TM.VIRON",
+        "extension": "EXT.VENUS"
+    },
+    "ARIDOR": {
+        "name": "CORPO_TM.ARIDOR",
+        "extension": "EXT.COLONIES"
+    },
+    "ARKLIGHT": {
+        "name": "CORPO_TM.ARKLIGHT",
+        "extension": "EXT.COLONIES"
+    },
+    "POSEIDON": {
+        "name": "CORPO_TM.POSEIDON",
+        "extension": "EXT.COLONIES"
+    },
+    "STORMCRAFT_INCORPORATED": {
+        "name": "CORPO_TM.STORMCRAFT_INCORPORATED",
+        "extension": "EXT.COLONIES"
+    },
+    "POLYPHEMOS": {
+        "name": "CORPO_TM.POLYPHEMOS",
+        "extension": "EXT.COLONIES"
+    },
+    "LAKEFRONT_RESORTS": {
+        "name": "CORPO_TM.LAKEFRONT_RESORTS",
+        "extension": "EXT.TURMOIL"
+    },
+    "PRISTAR": {
+        "name": "CORPO_TM.PRISTAR",
+        "extension": "EXT.TURMOIL"
+    },
+    "SEPTUM_TRIBUS": {
+        "name": "CORPO_TM.SEPTUM_TRIBUS",
+        "extension": "EXT.TURMOIL"
+    },
+    "TERRALABS_RESEARCH": {
+        "name": "CORPO_TM.TERRALABS_RESEARCH",
+        "extension": "EXT.TURMOIL"
+    },
+    "UTOPIA_INVEST": {
+        "name": "CORPO_TM.UTOPIA_INVEST",
+        "extension": "EXT.TURMOIL"
+    },
+    "ARCADIAN_COMMUNITIES": {
+        "name": "CORPO_TM.ARCADIAN_COMMUNITIES",
+        "extension": "EXT.PROMO"
+    },
+    "ASTRODRILL": {
+        "name": "CORPO_TM.ASTRODRILL",
+        "extension": "EXT.PROMO"
+    },
+    "FACTORUM": {
+        "name": "CORPO_TM.FACTORUM",
+        "extension": "EXT.PROMO"
+    },
+    "MONS_INSURANCE": {
+        "name": "CORPO_TM.MONS_INSURANCE",
+        "extension": "EXT.PROMO"
+    },
+    "PHARMACY_UNION": {
+        "name": "CORPO_TM.PHARMACY_UNION",
+        "extension": "EXT.PROMO"
+    },
+    "PHILARES": {
+        "name": "CORPO_TM.PHILARES",
+        "extension": "EXT.PROMO"
+    },
+    "RECYCLON": {
+        "name": "CORPO_TM.RECYCLON",
+        "extension": "EXT.PROMO"
+    },
+    "SPLICE": {
+        "name": "CORPO_TM.SPLICE",
+        "extension": "EXT.PROMO"
+    }
+}

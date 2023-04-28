@@ -1,0 +1,64 @@
+<%- include("../partials/_header") -%>
+<link rel="stylesheet" href="/datatables.net-bs5/css/dataTables.bootstrap5.min.css"/>
+
+<h3><%= __("TEAMS.TEAMS_LIST") %></h3>
+
+<div class="table-responsive-sm">
+    <table class="table table-hover" id="teamTable" data-order='[[ 1, "asc" ]]' data-page-length='10'>
+      <thead>
+        <tr>
+          <th class="col-2 text-center" data-orderable="false"><%= __("TEAMS.COUNTRY") %></th>
+          <th class="col-6"><%= __("TEAMS.NAME") %></th>
+          <th class="col-2 text-center"><%= __("TEAMS.PLAYERS") %></th>
+          <th class="col-2 text-center"><%= __("TEAMS.MATCHES") %></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% for (const team of teams) { %>
+          <tr class="align-middle" data-search="<%= team.name %>" data-order="<%= team.name %>" onclick="window.location='/team/<%= team.teamId %>';">
+            <td class="text-center"><img src="flags/<%= team.country %>.svg" alt="Flag" width="32" height="32"></td>
+            <td><strong>
+              <%= team.name %>
+            </strong><br>
+              <small><%= team.City %></small>
+            </td>
+            <td class="text-center"><%= team.players %></td>
+            <td class="text-center"><%= team.matches %></td>
+          </tr>
+        <% } %>
+      </tbody>
+    </table>
+</div>
+<script src="/jquery/dist/jquery.min.js"></script>
+<script src="/datatables.net/js/jquery.dataTables.min.js"></script>
+<script src="/datatables.net-bs5/js/dataTables.bootstrap5.min.js"></script>
+<script>
+  $(document).ready(function() {
+    $('#teamTable').DataTable({
+      language: {
+        // Remplacez ces chaînes par les traductions appropriées si nécessaire
+        processing: '<%= __("TEAMS.DATATABLE.PROCESSING") %>',
+        search: '<%= __("TEAMS.DATATABLE.SEARCH") %>',
+        paginate: {
+          first: '<%= __("TEAMS.DATATABLE.FIRST") %>',
+          last: '<%= __("TEAMS.DATATABLE.LAST") %>',
+          next: '<%= __("TEAMS.DATATABLE.NEXT") %>',
+          previous: '<%= __("TEAMS.DATATABLE.PREVIOUS") %>'
+        },
+        lengthMenu: '<%= __("TEAMS.DATATABLE.LENGTHMENU") %>',
+        info: '<%= __("TEAMS.DATATABLE.INFO") %>',
+        infoEmpty:      '<%= __("TEAMS.DATATABLE.INFOEMPTY") %>',
+        infoFiltered:   '<%= __("TEAMS.DATATABLE.INFOFILTERED") %>',
+        infoPostFix:    '<%= __("TEAMS.DATATABLE.INFOPOSTFIX") %>',
+        loadingRecords: '<%= __("TEAMS.DATATABLE.LOADINGRECORDS") %>',
+        zeroRecords:    '<%= __("TEAMS.DATATABLE.ZERORECORDS") %>',
+        emptyTable:     '<%= __("TEAMS.DATATABLE.EMPTYTABLE") %>',
+        aria: {
+            sortAscending:  '<%= __("TEAMS.DATATABLE.SORTASCENDING") %>',
+            sortDescending: '<%= __("TEAMS.DATATABLE.SORTDESCENDING") %>'
+        }
+      }
+    });
+  });
+</script>
+<%- include("../partials/_footer") -%>

@@ -1,0 +1,201 @@
+<%- include("../partials/_header") -%>
+<% if (showUpdateAlert) { %>
+    <div id="update-alert" class="alert alert-success alert-dismissible fade show mt-3" role="alert">
+      <%= __("TEAMS.EDIT.UPDATED_PLAYER") %>
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>    
+    <script src="/jquery/dist/jquery.min.js"></script>
+    <script>
+      setTimeout(() => {
+        $("#update-alert").alert('close');
+      }, 5000);
+    </script>
+<% } %>
+    <div class="container">
+        <% if (playerMatches.length === 0) { %>
+            <div class="mt-3">
+                <img src="/uploads/<%= playerInfo.image %>" class="rounded-circle me-2" width="128" height="128">
+                <div class="row mt-2 d-flex align-items-center">
+                    <div class="col enter-sansman">
+                        <%= playerInfo.username %>
+                    </div>
+                    <div class="col text-end <%= (!adminPw && !userPw) ? 'd-none' : '' %>">
+                        <button type="button" class="btn btn-dark"onclick="window.location.href='/team/<%= teamId %>/<%= (adminPw) ? 'admin' : 'user' %>/edit/player/<%= playerId %>/<%= (adminPw) ? adminPw : userPw %>'"><i class="bi bi-pencil text-white"></i></button>
+                    </div>
+                    <div class="col text-end <%= (adminPw || userPw) ? 'd-none' : '' %>">
+                        <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#userlogin"><i class="bi bi-pencil text-white"></i></button>
+                    </div>
+                </div>
+                <div class="row mt-1">
+                    <div class="col">
+                        <span class="score-player"><b>
+                            <%= playerInfo.rank %>
+                        </b></span>
+                </div>                
+                <div class="row mt-1">
+                    <div class="col mx-auto">
+                        <h3><%= __("PLAYER.NO_MATCHES_PLAYED") %></h3>
+                    </div>
+                </div>
+            </div>
+        <% } else { %>
+            <div class="mt-3">
+                <img src="/uploads/<%= playerInfo.image %>" class="rounded-circle me-2" width="128" height="128">
+                <div class="row mt-2 d-flex align-items-center">
+                    <div class="col enter-sansman">
+                        <%= playerInfo.username %>
+                    </div>
+                    <div class="col text-end <%= (!adminPw && !userPw) ? 'd-none' : '' %>">
+                        <button type="button" class="btn btn-dark"onclick="window.location.href='/team/<%= teamId %>/<%= (adminPw) ? 'admin' : 'user' %>/edit/player/<%= playerId %>/<%= (adminPw) ? adminPw : userPw %>'"><i class="bi bi-pencil text-white"></i></button>
+                    </div>
+                    <div class="col text-end <%= (adminPw || userPw) ? 'd-none' : '' %>">
+                        <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#userlogin"><i class="bi bi-pencil text-white"></i></button>
+                    </div>
+                </div>
+                <div class="row mt-1">
+                    <div class="col">
+                        <span class="score-player"><b>
+                            <%= playerInfo.rank %>
+                        </b></span>
+                    <% if (lastFourMatches > 0) { %>
+                        <i class="bi bi-arrow-up-right elo-up"></i>
+                        <span class="elo-up">
+                            <%= "+" + lastFourMatches %>
+                        </span>
+                    <% } else { %>
+                        <i class="bi bi-arrow-down-right elo-down"></i>
+                        <span class="elo-down">
+                            <%= lastFourMatches %>
+                        </span>
+                    <% } %>
+                        <span><small><%= __("PLAYER.LAST_FOUR_MATCHES") %></small></span>
+                    </div>
+                </div>
+                    <p class="corpo-player"><b><%= __("PLAYER.FAV_CORPO") %>:</b>
+                    <%= corporation.favoriteCorporation %> (<%= corporation.matchesPlayed %>)
+                    <br>
+                    <b><%= __("PLAYER.BEST_CORPO") %>:</b>
+                        <%= bestPerforming.bestPerformingCorporation %>
+                <% if (bestPerforming.pointsGained> 0) { %>
+                    <i class="bi bi-caret-up-fill elo-up"></i>
+                    <span class="elo-up">
+                        <%= "+" + bestPerforming.pointsGained %>
+                    </span>
+                <% } else { %>
+                    <i class="bi bi-caret-down-fill elo-down"></i>
+                    <span class="elo-down">
+                        <%= bestPerforming.pointsGained %>
+                    </span>
+                <% } %>
+                    <br>
+                    <b><%= __("PLAYER.WORST_CORPO") %>:</b>
+                        <%= worstPerforming.worstPerformingCorporation %>
+                <% if (worstPerforming.pointsLost> 0) { %>
+                    <i class="bi bi-caret-up-fill elo-up"></i>
+                    <span class="elo-up">
+                        <%= "+" + worstPerforming.pointsLost %>
+                    </span>
+                <% } else { %>
+                    <i class="bi bi-caret-down-fill elo-down"></i>
+                    <span class="elo-down">
+                        <%= worstPerforming.pointsLost %>
+                    </span>
+                <% } %>
+                </p>
+            </div>
+            <div class="table-responsive-sm">
+                <table class="table table-hover playertable">
+                    <thead>
+                        <tr>
+                            <th class="text-center"><%= __("PLAYER.STANDING") %></th>
+                            <th class="text-center"><%= __("PLAYER.PV") %></th>
+                            <th class="text-center"><%= __("PLAYER.SCORE") %></th>
+                            <th><%= __("PLAYER.CORPO") %></th>
+                            <th><%= __("PLAYER.DATE") %></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% for (const match of playerMatches) { %>
+                            <tr class="align-middle"
+                                onclick="window.location='/team/<%= teamId %>/match/<%= match.matchId %>';">
+                                <td class="text-center">
+                                    <%= match.standing %>
+                                </td>
+                                <td class="text-center">
+                                    <%= match.victoryPoints %>
+                                </td>
+                                <td class="text-center">
+                                <% if (match.variation> 0) { %>
+                                    <i class="bi bi-caret-up-fill elo-up"></i>
+                                    <span class="elo-up">
+                                        <%= "+" + match.variation %>
+                                    </span>
+                                <% } else { %>
+                                    <i class="bi bi-caret-down-fill elo-down"></i>
+                                    <span class="elo-down">
+                                        <%= match.variation %>
+                                    </span>
+                                <% } %>
+                                </td>
+                                <td>
+                                <% if (match.game==="tm-sel" ) { %>
+                                    <img src="/images/tm-sel.png" alt="Terraforming Mars" data-bs-toggle="tooltip"
+                                        data-bs-placement="top" class="me-2" height="30" width="30"
+                                        aria-label="Terraforming Mars" data-bs-original-title="Terraforming Mars">
+                                    <span>
+                                        <%= match.corporation %>
+                                    </span>
+                                <% } else { %>
+                                    <img src="/images/tmae-sel.png" alt="Terraforming Mars: Ares Expedition"
+                                        data-bs-toggle="tooltip" data-bs-placement="top" class="me-2" height="30"
+                                        width="30" aria-label="Terraforming Mars: Ares Expedition"
+                                        data-bs-original-title="Terraforming Mars: Ares Expedition">
+                                    <span>
+                                        <%= match.corporation %>
+                                    </span>
+                                <% } %>
+                                </td>
+                                <td>
+                                    <%= match.matchdate %>
+                                </td>
+                            </tr>
+                            <% } %>
+                    </tbody>
+                </table>
+            </div>        
+        <% } %>
+    </div>
+    <div class="modal fade" id="userlogin" tabindex="-1" aria-labelledby="userloginlabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="userloginlabel"><%= __("HEADER.LOGIN") %></h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="userLoginForm">
+                        <div class="mb-3">
+                            <label for="userPw" class="form-label"><%= __("HEADER.USER_PW_LABEL") %></label>
+                            <input type="text" class="form-control" id="userPw" name="userPw" required>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><%= __("HEADER.CANCEL") %></button>
+                    <button type="submit" class="btn btn-primary" form="userLoginForm"><%= __("HEADER.CONNECT") %></button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        document.getElementById('userLoginForm').addEventListener('submit', function (event) {
+            event.preventDefault();
+            const userPw = document.getElementById('userPw').value;
+            const teamId = '<%= teamId %>';
+            const playerId = '<%= playerId %>';
+            const url = '/team/' + teamId + '/user/player/' + playerId+ '/' + userPw;
+    
+            window.location.href = url;
+        });
+    </script>
+    <%- include("../partials/_footer") -%>

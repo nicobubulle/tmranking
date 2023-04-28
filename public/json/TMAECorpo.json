@@ -1,0 +1,126 @@
+{
+    "CREDICOR": {
+        "name": "CORPO_TMAE.CREDICOR",
+        "extension": "EXT.BASE"
+    },
+    "ECOLINE": {
+        "name": "CORPO_TMAE.ECOLINE",
+        "extension": "EXT.BASE"
+    },
+    "HELION": {
+        "name": "CORPO_TMAE.HELION",
+        "extension": "EXT.BASE"
+    },
+    "INTERPLANETARY_CINEMATICS": {
+        "name": "CORPO_TMAE.INTERPLANETARY_CINEMATICS",
+        "extension": "EXT.BASE"
+    },
+    "INVENTRIX": {
+        "name": "CORPO_TMAE.INVENTRIX",
+        "extension": "EXT.BASE"
+    },
+    "MINING_GUILD": {
+        "name": "CORPO_TMAE.MINING_GUILD",
+        "extension": "EXT.BASE"
+    },
+    "PHOBOLOG": {
+        "name": "CORPO_TMAE.PHOBOLOG",
+        "extension": "EXT.BASE"
+    },
+    "SATURN_SYSTEMS": {
+        "name": "CORPO_TMAE.SATURN_SYSTEMS",
+        "extension": "EXT.BASE"
+    },
+    "TERACTOR": {
+        "name": "CORPO_TMAE.TERACTOR",
+        "extension": "EXT.BASE"
+    },
+    "THARSIS_REPUBLIC": {
+        "name": "CORPO_TMAE.THARSIS_REPUBLIC",
+        "extension": "EXT.BASE"
+    },
+    "THORGATE": {
+        "name": "CORPO_TMAE.THORGATE",
+        "extension": "EXT.BASE"
+    },
+    "UNITED_NATIONS_MARS_INITIATIVE": {
+        "name": "CORPO_TMAE.UNITED_NATIONS_MARS_INITIATIVE",
+        "extension": "EXT.BASE"
+    },
+    "APOLLO_INDUSTRIES": {
+        "name": "CORPO_TMAE.APOLLO_INDUSTRIES",
+        "extension": "EXT.DISCOVERY"
+    },
+    "HYPERION_SYSTEMS": {
+        "name": "CORPO_TMAE.HYPERION_SYSTEMS",
+        "extension": "EXT.DISCOVERY"
+    },
+    "EXOCORP": {
+        "name": "CORPO_TMAE.EXOCORP",
+        "extension": "EXT.DISCOVERY"
+    },
+    "SULTIRA": {
+        "name": "CORPO_TMAE.SULTIRA",
+        "extension": "EXT.DISCOVERY"
+    },
+    "ARKLIGHT": {
+        "name": "CORPO_TMAE.ARKLIGHT",
+        "extension": "EXT.PROMO_BASE"
+    },
+    "CELESTIOR": {
+        "name": "CORPO_TMAE.CELESTIOR",
+        "extension": "EXT.PROMO_BASE"
+    },
+    "DEVTECHS": {
+        "name": "CORPO_TMAE.DEVTECHS",
+        "extension": "EXT.PROMO_BASE"
+    },
+    "LAUNCH_STAR_INCORPORATED": {
+        "name": "CORPO_TMAE.LAUNCH_STAR_INCORPORATED",
+        "extension": "EXT.PROMO_BASE"
+    },
+    "MAI_NI_PRODUCTIONS": {
+        "name": "CORPO_TMAE.MAI_NI_PRODUCTIONS",
+        "extension": "EXT.PROMO_BASE"
+    },
+    "ZATESEL": {
+        "name": "CORPO_TMAE.ZATESEL",
+        "extension": "EXT.PROMO_BASE"
+    },
+    "NABU_LABS": {
+        "name": "CORPO_TMAE.NABU_LABS",
+        "extension": "EXT.PROMO_EXT"
+    },
+    "MODPRO": {
+        "name": "CORPO_TMAE.MODPRO",
+        "extension": "EXT.PROMO_EXT"
+    },
+    "THE_NEXT_STEP_INITIATIVE": {
+        "name": "CORPO_TMAE.THE_NEXT_STEP_INITIATIVE",
+        "extension": "EXT.PROMO_EXT"
+    },
+    "ROMIRRA": {
+        "name": "CORPO_TMAE.ROMIRRA",
+        "extension": "EXT.PROMO_EXT"
+    },
+    "AUSTELLAR": {
+        "name": "CORPO_TMAE.AUSTELLAR",
+        "extension": "EXT.PROMO_EXT"
+    },
+    "BURSTAR": {
+        "name": "CORPO_TMAE.BURSTAR",
+        "extension": "EXT.CRISIS"
+    },
+    "MAGMA_INC": {
+        "name": "CORPO_TMAE.MAGMA_INC",
+        "extension": "EXT.CRISIS"
+    },
+    "ORBEX_UNITED": {
+        "name": "CORPO_TMAE.ORBEX_UNITED",
+        "extension": "EXT.CRISIS"
+    },
+    "SHARIZEN": {
+        "name": "CORPO_TMAE.SHARIZEN",
+        "extension": "EXT.CRISIS"
+    }
+}

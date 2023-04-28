@@ -1,0 +1,31 @@
+<div class="table-responsive-sm">
+    <table class="table table-hover playertable">
+        <thead>
+            <tr>
+                <th class="col-8"><%= __("RANKING.PLAYER") %></th>
+                <th class="col-2 text-center"><%= __("RANKING.RANK") %></th>
+                <th class="col-2 text-center"><%= __("RANKING.SCORE") %></th>
+            </tr>
+        </thead>
+        <tbody>
+            <% const STARTING_VALUE = 1; %>
+            <% let order = STARTING_VALUE; %>
+            <% for (const player of players) { %>
+                <tr class="align-middle" onclick="window.location='/team/<%= teamId %><% if (adminPw) { %>/admin/player/<%= player.id %>/<%= adminPw %><% } else if (privateKey) { %>/private/player/<%= player.id %>/<%= privateKey %><% } else { %>/player/<%= player.id %><% } %>';">
+                    <td>
+                        <img src="/uploads/<%= player.image %>" class="rounded-circle" width="32" height="32" style="margin-right: 10px;">
+                        <span>
+                            <%= player.username %>
+                        </span>
+                    </td>
+                    <td class="text-center">
+                        <%= order %><% order++; %>
+                    </td>
+                    <td class="text-center">
+                        <%= player.rank %>
+                    </td>
+                </tr>
+                <% } %>
+        </tbody>
+    </table>
+</div>

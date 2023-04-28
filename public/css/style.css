@@ -1,0 +1,137 @@
+.card:not(.selected) {
+    border: 2px solid #EEE6D8;
+}
+
+.card.selected {
+    border: 2px solid #93441A;
+}
+
+.pv-div {
+    width: 35px;
+    height: 35px;
+    background-color: #c1440e;
+    font-weight: bold;
+    color: white;
+    text-shadow: rgb(0, 0, 0) 0px 0px 1px;
+}
+
+.tie-div {
+    border-radius: 4px;
+    width: 32px;
+    height: 32px;
+    background: radial-gradient(circle, rgb(212, 186, 0) 38%, rgb(200, 148, 2) 100%);
+    border: 1px solid rgb(81, 17, 0);
+    font-weight: bold;
+    color: white;
+    text-shadow: rgb(0, 0, 0) 0px 0px 1px;
+}
+
+.img-game {
+    width: 80%;
+}
+
+.badge.winner {
+    background-color: #C6F6D5;
+    color: #22543D;
+}
+
+.badge.other {
+    background-color: #edf2f7;
+    color: #1a202c;
+}
+
+.points-input {
+    width: 50px;
+    text-align: center;
+}
+
+.playercheck {
+    width: 28px;
+    height: 28px;
+    justify-content: center;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    color: white;
+}
+
+.playercheck:not(.selected) {
+    background-color: #DAAB3A;
+    transition: background-color .15s ease-in-out;
+}
+
+.playercheck.selected {
+    background-color: #B67332;
+    transition: background-color .15s ease-in-out;
+}
+
+.nav-link.active {
+    background-color: #93441A !important;
+    color: white !important;
+}
+
+.nav-link {
+    color: #93441A;
+}
+
+.nav-link:hover {
+    color: #B67332;
+}
+
+.elo-down {
+    color: red;
+}
+
+.elo-up {
+    color: green;
+}
+
+@media screen and (min-width: 768px) {
+    body {
+        max-width: 768px;
+        margin: 0 auto;
+    }
+}
+
+.playertable>tbody>tr>td,
+.playertable>tbody>tr>th,
+.playertable>tfoot>tr>td,
+.playertable>tfoot>tr>th,
+.playertable>thead>tr>td,
+.playertable>thead>tr>th {
+    padding: 1rem 1.5rem;
+}
+
+@font-face {
+    font-family: 'Enter Sansman';
+    src: url('/fonts/enter-sansman.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+.enter-sansman {
+    font-family: "Enter Sansman", Helvetica, sans-serif;
+    font-size: 1.875rem;
+    font-weight: bold;
+    color: #1A1A1A;
+}
+
+.score-player {
+    font-weight: 600;
+    font-size: 1.5rem;
+    color: #1A1A1A;
+}
+
+.corpo-player {
+    font-size: 0.875rem;
+    color: #1A1A1A;
+    opacity: 0.8;
+}
+
+.player-color {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    border: 2px solid white;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+  }

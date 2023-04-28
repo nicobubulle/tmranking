@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+        <link rel="manifest" href="/site.webmanifest">
+        <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+        <meta name="msapplication-TileColor" content="#da532c">
+        <meta name="theme-color" content="#ffffff">
+        <title>
+            <%= __("GEN.TMRANKING") %>
+        </title>
+        <link rel="stylesheet" href="/bootstrap/dist/css/bootstrap.min.css" />
+        <link rel="stylesheet" href="/bootstrap-icons/font/bootstrap-icons.css" />
+        <link rel="stylesheet" href="/css/style.css" />
+    </head>
+
+    <body>
+        <header class="header">
+            <nav class="navbar navbar-expand-md navbar-light bg-light">
+                <div class="container-xxl max-navbar-width bd-gutter flex-wrap flex-lg-nowrap">
+                    <a class="navbar-brand" href="/"><img src="/favicon-32x32.png"></img>
+                        <%= __("GEN.TMRANKING") %>
+                    </a>
+                    <% if (teamId) { %>
+                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
+                            aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                        <div class="collapse navbar-collapse" id="navbarCollapse">
+                            <ul class="navbar-nav ms-auto">
+                                <li class="nav-item active">
+                                    <a class="nav-link" href="/team/<%= teamId %><% if (adminPw) { %>/admin/<%= adminPw %><% } else if (privateKey) { %>/private/<%= privateKey %><% } %>">
+                                    <i class="bi bi-house-door-fill"></i>
+                                        <%= __("HEADER.HOME") %></a>
+                                </li>
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                        <%= __("HEADER.STATS") %>
+                                    </a>
+                                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="/team/<%= teamId %><% if (adminPw) { %>/admin/ranking/<%= adminPw %><% } else if (privateKey) { %>/private/ranking/<%= privateKey %><% } else { %>/ranking<% } %>">
+                                                <i class="bi bi-list-ol"></i>
+                                                <%= __("HEADER.RANKING") %></a>
+                                        </li>
+                                        <li class="nav-item">
+                                                <a class="nav-link" href="/team/<%= teamId %><% if (adminPw) { %>/admin/matches/<%= adminPw %><% } else if (privateKey) { %>/private/matches/<%= privateKey %><% } else { %>/matches<% } %>">
+                                                <i class="bi bi-calendar"></i>
+                                                <%= __("HEADER.MATCHES") %></a>
+                                        </li>
+                                        <li class="nav-item">
+                                                <a class="nav-link" href="/team/<%= teamId %><% if (adminPw) { %>/admin/history/<%= adminPw %><% } else if (privateKey) { %>/private/history/<%= privateKey %><% } else { %>/history<% } %>">
+                                                <i class="bi bi-graph-up"></i>
+                                                <%= __("HEADER.GRAPH") %></a>
+                                        </li>
+                                        <li class="nav-item">
+                                                <a class="nav-link" href="/team/<%= teamId %><% if (adminPw) { %>/admin/corporations/<%= adminPw %><% } else if (privateKey) { %>/private/corporations/<%= privateKey %><% } else { %>/corporations<% } %>">
+                                                <i class="bi bi-building-fill"></i>
+                                                <%= __("HEADER.CORPORATIONS") %></a>
+                                        </li>
+                                    </ul>
+                                </li>                            
+                    <% if (adminPw) { %>
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                        <%= __("HEADER.ADD") %>
+                                    </a>
+                                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="/team/<%= teamId %>/admin/new-match/<%= adminPw %>"><i
+                                                    class="bi bi-calendar-plus"></i> <%= __("HEADER.MATCH") %></a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="/team/<%= teamId %>/admin/new-player/<%= adminPw %>"><i
+                                                    class="bi bi-person-plus-fill"></i> <%= __("HEADER.PLAYER") %></a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                        <%= __("HEADER.MANAGE") %>
+                                    </a>
+                                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="/team/<%= teamId %>/admin/edit/<%= adminPw %>">
+                                                <i class="bi bi-collection-fill"></i> <%= __("HEADER.TEAM") %></a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="/team/<%= teamId %>/admin/players/<%= adminPw %>">
+                                                <i class="bi bi-people-fill"></i> <%= __("HEADER.PLAYERS") %></a>
+                                        </li>
+                                    </ul>
+                                </li>
+                            <% } else { %>
+                                <a class="nav-link" href="#" role="button" aria-expanded="false" data-bs-toggle="modal" data-bs-target="#adminlogin">
+                                    <%= __("HEADER.ADMIN") %>
+                                </a>                         
+                    <% } %>
+                            </ul>
+                        </div>
+                    <% } else { %>
+                        <a class="nav-link" href="/new-team" role="button" aria-expanded="false">
+                            <%= __("HEADER.ADD_TEAM") %>
+                        </a>
+                        <a class="nav-link" href="#" role="button" aria-expanded="false" data-bs-toggle="modal" data-bs-target="#privatelogin">
+                            <%= __("HEADER.PRIVATE") %>
+                        </a>
+                    <% } %>
+                </div>
+            </nav>
+        </header>
+<!-- Modal -->
+<div class="modal fade" id="adminlogin" tabindex="-1" aria-labelledby="adminloginlabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="adminloginlabel"><%= __("HEADER.LOGIN") %></h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="adminLoginForm">
+                    <div class="mb-3">
+                        <label for="adminPw" class="form-label"><%= __("HEADER.ADMIN_PW_LABEL") %></label>
+                        <input type="text" class="form-control" id="adminPw" name="adminPw" required>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><%= __("HEADER.CANCEL") %></button>
+                <button type="submit" class="btn btn-primary" form="adminLoginForm"><%= __("HEADER.CONNECT") %></button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="privatelogin" tabindex="-1" aria-labelledby="privateloginlabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="privateloginlabel"><%= __("HEADER.LOGIN") %></h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="privateLoginForm">
+                    <div class="mb-3">
+                        <label for="teamId" class="form-label"><%= __("HEADER.TEAM_ID_LABEL") %></label>
+                        <input type="text" class="form-control" id="teamId" name="teamId" required>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-body">
+                <form id="privateLoginForm">
+                    <div class="mb-3">
+                        <label for="privatePw" class="form-label"><%= __("HEADER.PRIVATE_PW_LABEL") %></label>
+                        <input type="text" class="form-control" id="privatePw" name="privatePw" required>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><%= __("HEADER.CANCEL") %></button>
+                <button type="submit" class="btn btn-primary" form="privateLoginForm"><%= __("HEADER.CONNECT") %></button>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    document.getElementById('adminLoginForm').addEventListener('submit', function (event) {
+        event.preventDefault();
+        const adminPw = document.getElementById('adminPw').value;
+        const teamId = '<%= teamId %>';
+        const url = '/team/' + teamId + '/admin/' + adminPw;
+
+        window.location.href = url;
+    });
+    document.getElementById('privateLoginForm').addEventListener('submit', function (event) {
+        event.preventDefault();
+        const privatePw = document.getElementById('privatePw').value;
+        const teamId = document.getElementById('teamId').value;
+        const url = '/team/' + teamId + '/private/' + privatePw;
+
+        window.location.href = url;
+    });
+</script>
+        <div class="container">

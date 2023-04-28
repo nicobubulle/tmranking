@@ -1,0 +1,183 @@
+<%- include("../partials/_header") -%>
+  <link rel="stylesheet" href="/select2/dist/css/select2.min.css" />
+  <link rel="stylesheet" href="/select2-bootstrap-5-theme/dist/select2-bootstrap-5-theme.min.css" />
+  <link rel="stylesheet" href="/gijgo/css/gijgo.min.css" />
+ 
+  <h3><%= __("NEW_MATCH.ADD_MATCH") %></h3>
+
+  <form action="/team/<%= teamId %>/admin/new-match/<%= adminPw %>" method="post">
+    <form>
+      <ul class="nav nav-pills nav-fill mb-3">
+        <li class="nav-item">
+          <a class="nav-link active" id="tab-0-options" onclick="navdiv('0-options')"><%= __("NEW_MATCH.OPTIONS") %></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link disabled" id="tab-1-players" onclick="navdiv('1-players')"><%= __("NEW_MATCH.PLAYERS") %></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link disabled" id="tab-2-stats" onclick="navdiv('2-stats')"><%= __("NEW_MATCH.STATS") %></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link disabled" id="tab-3-review" onclick="navdiv('3-review')"><%= __("NEW_MATCH.RECAP") %></a>
+        </li>
+      </ul>
+      <div id="0-options" class="navdiv">
+        <div class="container">
+          <div class="row">
+            <div class="col-sm-6">
+              <div id="tm-sel" class="card <% if (teamData.team.game1Opt === 0) { %>d-none<% } %>" onclick="selectGame('tm-sel')">
+                <div class="d-flex justify-content-center align-items-center overflow-hidden">
+                  <img src="/images/tm.jpg" class="card-img-top mt-4 img-game" alt="<%= __("NEW_MATCH.TERRAFORMING_MARS") %>">
+                </div>
+                <div class="card-body">
+                  <h5 class="card-title mb-3 text-center"><%= __("NEW_MATCH.TERRAFORMING_MARS") %></h5>
+                  <div id="tm-options" class=" d-none">
+                    <div class="mb-3">
+                      <select class="form-select" aria-label="Default select example">
+                        <option value="" disabled selected hidden><%= __("NEW_MATCH.SELECT_BOARD") %></option>
+                        <option value="Tharsis"><%= __("NEW_MATCH.THARSIS") %></option>
+                        <option value="Hellas"><%= __("NEW_MATCH.HELLAS") %></option>
+                        <option value="Elysium"><%= __("NEW_MATCH.ELYSIUM") %></option>
+                      </select>
+                    </div>
+                    <h6><%= __("NEW_MATCH.EXTENSIONS") %>:</h6>
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" id="tm_corporateEra">
+                      <label class="form-check-label" for="tm_corporateEra"><%= __("EXT.CORPORATE_ERA") %></label>
+                    </div>
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" id="tm_prelude">
+                      <label class="form-check-label" for="tm_prelude"><%= __("EXT.PRELUDE") %></label>
+                    </div>
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" id="tm_venus">
+                      <label class="form-check-label" for="tm_venus"><%= __("EXT.VENUS") %></label>
+                    </div>
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" id="tm_colonies">
+                      <label class="form-check-label" for="tm_colonies"><%= __("EXT.COLONIES") %></label>
+                    </div>
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" id="tm_turmoil">
+                      <label class="form-check-label" for="tm_turmoil"><%= __("EXT.TURMOIL") %></label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-6">
+              <div id="tmae-sel" class="card <% if (teamData.team.game2Opt === 0) { %>d-none<% } %>" onclick="selectGame('tmae-sel')">
+                <div class="d-flex justify-content-center align-items-center overflow-hidden">
+                  <img src="/images/tmae.jpg" class="card-img-top mt-4 img-game" alt="<%= __("NEW_MATCH.ARES_EXPEDITION") %>">
+                </div>
+                <div class="card-body">
+                  <h5 class="card-title mb-3 text-center"><%= __("NEW_MATCH.ARES_EXPEDITION") %></h5>
+                  <div id="tmae-options" class="d-none">
+                    <h6><%= __("NEW_MATCH.EXTENSIONS") %>:</h6>
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" id="tmae_discovery">
+                      <label class="form-check-label" for="tmae_discovery"><%= __("EXT.DISCOVERY") %></label>
+                    </div>
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" id="tmae_foundations">
+                      <label class="form-check-label" for="tmae_foundations"><%= __("EXT.FOUNDATIONS") %></label>
+                    </div>
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" id="tmae_crisis">
+                      <label class="form-check-label" for="tmae_crisis"><%= __("EXT.CRISIS") %></label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="d-grid mt-3"><button disabled="disabled" class="btn btn-secondary" type="button" id="next-button0"
+            onclick="navdiv('1-players')"><%= __("NEW_MATCH.NEXT") %><span class="ms-2"><i class="bi bi-arrow-right"></i></span></button>
+        </div>
+      </div>
+      <div id="1-players" class="navdiv d-none">
+        <% for (const player of teamData.players) { %>
+          <div class="row mt-3 mb-3" id="div_<%= player.username %>"
+            onclick="selectplayer('div_<%= player.username %>', '<%= player.id %>', '<%= player.rank %>')"
+            style="align-items: center;">
+            <div class="col">
+                <img src="/uploads/<%= player.image %>" class="rounded-circle me-2" width="32" height="32"
+                  id="img_<%= player.username %>">
+                <span>
+                  <%= player.username %>
+                </span>
+                <i class="bi bi-star ms-3"></i>
+                <span>
+                  <%= player.rank %>
+                </span>
+            </div>
+            <div id="check_<%= player.username %>" class="rounded-circle col-1 playercheck"></div>
+          </div>
+          <% } %>
+            <div class="d-grid"><button disabled="disabled" class="btn btn-secondary" type="button" id="next-button1"
+                onclick="navdiv('2-stats')"><%= __("NEW_MATCH.NEXT") %><span class="ms-2"><i class="bi bi-arrow-right"></i></span></button>
+            </div>
+      </div>
+      <div id="2-stats" class="navdiv d-none">
+        <div id="stats"></div>
+        <div class="d-grid"><button disabled="disabled" class="btn btn-secondary" type="button" id="next-button2"
+            onclick="recap();navdiv('3-review')"><%= __("NEW_MATCH.NEXT") %><span class="ms-2"><i class="bi bi-arrow-right"></i></span></button>
+        </div>
+      </div>
+      <div id="3-review" class="navdiv d-none">
+        <div class="card review mb-3">
+          <div class="card-body review">
+            <div class="row">
+              <div class="col-3">
+                <div>
+                  <h6><%= __("NEW_MATCH.MATCH_DATE") %></h6>
+                </div>
+                <div>
+                  <input id="datepicker" name="matchdate" />
+                </div>
+              </div>
+              <div class="col-4">
+                <div>
+                  <h6><%= __("NEW_MATCH.LOCATION") %></h6>
+                </div>
+                <div class="input-group">
+                  <span class="input-group-text"><i class="bi bi-geo-alt"></i></span>
+                  <input class="form-control" list="locationOptions" id="location" name="location" placeholder="<%= __("NEW_MATCH.LOCATION_PH") %>" oninput="checkLocation()">
+                  <datalist id="locationOptions">
+                    <option value="<%= __("NEW_MATCH.LOCATION_OPT") %>">
+                  </datalist>
+                </div>
+              </div>
+              <div class="col-5 game-detail">
+                <div>
+                  <h6><%= __("NEW_MATCH.MATCH_OPTIONS") %></h6>
+                </div>
+                <div id="match-options"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="mb-3">
+          <h3><%= __("NEW_MATCH.RESULTS") %></h3>
+        </div>
+        <div id="results"></div>
+        <input type="hidden" id="gameOpt" name="gameOpt">
+        <input type="hidden" id="playersInfo" name="playersInfo">
+        <div class="d-grid"><button disabled="disabled" type="submit" id="addMatch" class="btn btn-success" ><%= __("NEW_MATCH.ADD") %><span class="ms-2"></span></button></div>
+      </div>
+    </form>
+    <script>
+      var translatedCorpoPH = '<%- __("NEW_MATCH.CHOOSE_A_CORPORATION") %>'
+      var translatedCorpoTM = '<%- JSON.stringify(translatedTMCorpo) %>'
+      var translatedCorpoTMAE = '<%- JSON.stringify(translatedTMAECorpo) %>'
+      var game1Opt = '<%- teamData.team.game1Opt %>';
+      var game2Opt = '<%- teamData.team.game2Opt %>';
+    </script>
+    <script src="/jquery/dist/jquery.min.js"></script>
+    <script src="/select2/dist/js/select2.min.js"></script>
+    <script src="/gijgo/js/gijgo.min.js"></script>
+    <script src="/gijgo/js/messages/messages.fr-fr.js"></script>
+    <script src="/js/elo.js"></script>
+    <script src="/js/match-new.js"></script>
+    <%- include("../partials/_footer") -%>
