@@ -385,7 +385,7 @@ app.get("/team/:teamId(\\d+)/admin/new-match(/:adminPw([0-9a-fA-F]{8}-[0-9a-fA-F
   const adminPw = req.params.adminPw || null;
   const adminPWDb = await d.getAdminPw(db_name, teamId);
   if (adminPw === adminPWDb) {
-    const TMjson = path.join(__dirname, "public", "json", "TMcorpo.json");
+    const TMjson = path.join(__dirname, "public", "json", "TMCorpo.json");
     const translatedTMCorpo = f.loadAndTranslateJson(TMjson, req);
     const TMAEjson = path.join(__dirname, "public", "json", "TMAECorpo.json");
     const translatedTMAECorpo = f.loadAndTranslateJson(TMAEjson, req);
