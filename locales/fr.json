@@ -185,7 +185,8 @@
 		"TITLE": "Classement des joueurs",
 		"PLAYER": "Joueur",
 		"RANK": "Rang",
-		"SCORE": "Score"
+		"SCORE": "Score",
+		"PLAYED": "Joué"
 	},
 	"HISTORY": {
 		"TITLE": "Historique des scores"

@@ -277,10 +277,12 @@ const getTopPlayersPromise = (db_name, teamId, limit) => {
   return new Promise((resolve, reject) => {
     const db = new sqlite3.Database(db_name);
 
-    let query = `SELECT id, username, image, rank
-                 FROM Player
-                 WHERE teamId = ?
-                 ORDER BY rank DESC`
+    let query = `SELECT p.id, p.username, p.image, p.rank, COUNT(mr.playerId) as matchesPlayed
+                 FROM Player p
+                 LEFT JOIN MatchRanking mr ON p.id = mr.playerId
+                 WHERE p.teamId = ?
+                 GROUP BY p.id
+                 ORDER BY p.rank DESC`
 
     if (limit !== null) {
       query += ` LIMIT ${limit}`;
@@ -297,12 +299,12 @@ const getTopPlayersPromise = (db_name, teamId, limit) => {
           username: row.username,
           image: row.image,
           rank: row.rank,
+          matchesPlayed: row.matchesPlayed
         }));
 
         resolve(topPlayers);
       }
-    }
-    );
+    });
   });
 };
 

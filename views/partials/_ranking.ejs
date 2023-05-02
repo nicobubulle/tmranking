@@ -2,9 +2,10 @@
     <table class="table table-hover playertable">
         <thead>
             <tr>
-                <th class="col-8"><%= __("RANKING.PLAYER") %></th>
+                <th class="col-6"><%= __("RANKING.PLAYER") %></th>
                 <th class="col-2 text-center"><%= __("RANKING.RANK") %></th>
                 <th class="col-2 text-center"><%= __("RANKING.SCORE") %></th>
+                <th class="col-2 text-center"><%= __("RANKING.PLAYED") %></th>
             </tr>
         </thead>
         <tbody>
@@ -23,6 +24,9 @@
                     </td>
                     <td class="text-center">
                         <%= player.rank %>
+                    </td>
+                    <td class="text-center">
+                        <%= player.matchesPlayed %>
                     </td>
                 </tr>
                 <% } %>

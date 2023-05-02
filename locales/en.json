@@ -5,7 +5,7 @@
 		"TMRANKING": "TMRanking"
 	},
 	"INDEX": {
-		"HEADER" : {
+		"HEADER": {
 			"SUB": "Follow the activity of your Terraforming Mars team",
 			"ALL_TEAMS": "See the teams",
 			"SEE_MORE": "Learn more",
@@ -16,19 +16,19 @@
 			"1_SUB": "Fill the information from your and store the administrator key.",
 			"2_TITLE": "Visualize your team",
 			"2_SUB": "A summary of your team allows you to follow the evolution of your team. ",
-			"3_TITLE":"Administer your team",
+			"3_TITLE": "Manage your team",
 			"3_SUB": "Find all the tools necessary for the management of your team. ",
-			"4_TITLE":"Add players",
+			"4_TITLE": "Add players",
 			"4_SUB": "Give him a name, a photo, a color and his personal key. ",
-			"5_TITLE":"Add games",
+			"5_TITLE": "Add games",
 			"5_SUB": "The 2 Terraforming Mars versions are available with their respective extension.You can indicate the date and place for more personalization. ",
-			"6_TITLE":"Statistics: players' classification",
+			"6_TITLE": "Statistics: players' classification",
 			"6_SUB": "The players are classified from their score (Elo). ",
-			"7_TITLE":"Statistics: Summary of matches",
+			"7_TITLE": "Statistics: Summary of matches",
 			"7_SUB": "Find all the matches played with all the information entered. ",
-			"8_TITLE":"Statistics: graphic",
+			"8_TITLE": "Statistics: graphic",
 			"8_SUB": "Visualize players' progress on a graph with their respective color. ",
-			"9_TITLE":"Statistics: classification of corporations",
+			"9_TITLE": "Statistics: classification of corporations",
 			"9_SUB": "Evaluate the most efficient corporations over the course of your games! ",
 			"10_TITLE": "List of teams",
 			"10_SUB": "Find a local team to join.",
@@ -185,7 +185,8 @@
 		"TITLE": "Player classification",
 		"PLAYER": "Player",
 		"RANK": "Rank",
-		"SCORE": "Score"
+		"SCORE": "Score",
+		"PLAYED": "Played"
 	},
 	"HISTORY": {
 		"TITLE": "Score history"
